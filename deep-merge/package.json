@@ -1,0 +1,16 @@
+{
+	"name": "deep-merge",
+	"version": "1.0.0",
+	"main": "index.js",
+	"private": true,
+	"scripts": {
+		"test": "vitest"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"devDependencies": {
+		"vitest": "^3.2.4"
+	}
+}
