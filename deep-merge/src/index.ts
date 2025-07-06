@@ -5,9 +5,14 @@
 // Go to [deep-merge\test\deepMerge.test.ts]
 // 4.4 Улучшим нашу реализацию, чтобы пройти также тест на глубокое слияние свойств объекта. Мы используем рекурсию здесь для вложенных в объекты свойств.
 // 4.5 Отлично, тесты снова пройдены. Теперь у нас есть готовая функция для глубокого слияния двух объектов или массивов.
+// Go to [deep-merge\test\deepMerge.test.ts]
+// 5.4 Добавим ещё одну проверку для корректного вывода ошибки с помощью конструкта "throw new Error", в случае, если была зафиксирована попытка слияния разных типов данных.
 export function deepMerge(a, b) {
-  if (Array.isArray(a)) {
+  if (Array.isArray(a) && Array.isArray(b)) {
     return [...a, ...b];
+  }
+  if (Array.isArray(a) || Array.isArray(b) || typeof a !== typeof b) {
+    throw new Error('Can not merge two different types.');
   }
   // return Object.assign(a, b);
   const merged = { ...a };
