@@ -20,9 +20,7 @@ export function deepMerge(a, b) {
   for (const key of Object.keys(b)) {
     if (typeof a[key] === 'object' || Array.isArray(a[key])) {
       merged[key] = deepMerge(a[key], b[key]);
-    } else {
-      merged[key] = b[key];
-    }
+    } else merged[key] = b[key];
   }
 
   return merged;
