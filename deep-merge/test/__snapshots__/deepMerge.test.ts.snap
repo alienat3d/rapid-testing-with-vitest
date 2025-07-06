@@ -6,6 +6,11 @@ exports[`deep merge with props overlaps 1`] = `
     "github": "alienat3d",
     "twitter": "alienat3d",
   },
+  "languages": [
+    "javascript",
+    "typescript",
+    "vue",
+  ],
   "name": "Al",
 }
 `;
