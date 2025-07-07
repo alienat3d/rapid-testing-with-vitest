@@ -56,3 +56,43 @@ test('deep merge with props overlaps', () => {
 
   expect(merged).toMatchSnapshot();
 });
+
+// * 8.0 На прошлых уроках мы рассмотрели работу со снэпшотами, которые сохраняются в отдельную папку "__snapshots__", но в некоторых случаях такой подход не слишком удобен, потому, что приходится часто переключаться между разными файлами. Поэтому в Vitest есть альтернативный вариант снэпшота "инлайновый" ("inline snapshot"). Для этого мы используем метод "toMatchInlineSnapshot", и если Vitest в режиме слежения, то мы сразу же увидим снэпшот внутри "()" метода "toMatchInlineSnapshot". А если совмещать этот подход с авто-обновлением при помощи команды "npx vitest -u", то мы может заметно ускорить процесс.
+// 8.1 Также можно удобно использовать инлайновые снэпшоты для "console.log" в тестах. Например, узнаем квадратный корень из 2. Или, чтобы быстро узнать число Pi.
+test('deep merge with props overlaps (inline snapshot)', () => {
+  const merged = deepMerge(
+    {
+      name: 'Al',
+      accounts: {
+        github: 'alienat3d',
+      },
+      languages: ['javascript', 'react'],
+    },
+    {
+      accounts: {
+        twitter: 'alienat3d',
+      },
+      languages: ['typescript', 'vue', 'svelte'],
+    }
+  );
+
+  expect(merged).toMatchInlineSnapshot(`
+    {
+      "accounts": {
+        "github": "alienat3d",
+        "twitter": "alienat3d",
+      },
+      "languages": [
+        "javascript",
+        "react",
+        "typescript",
+        "vue",
+        "svelte",
+      ],
+      "name": "Al",
+    }
+  `);
+
+  expect(Math.sqrt(2)).toMatchInlineSnapshot(`1.4142135623730951`);
+  expect(Math.PI).toMatchInlineSnapshot(`3.141592653589793`);
+});
